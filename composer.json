@@ -1,0 +1,31 @@
+{
+  "name": "64robots/nova-date-filter",
+  "description": "A Laravel Nova date filter.",
+  "keywords": [
+    "laravel",
+    "nova",
+    "date",
+    "filter"
+  ],
+  "license": "MIT",
+  "require": {
+    "php": ">=7.1.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "R64\\Filters\\": "src/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "R64\\Filters\\FieldServiceProvider"
+      ]
+    }
+  },
+  "config": {
+    "sort-packages": true
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}
