@@ -2,11 +2,16 @@
 
 Nova filter that displays a Date Picker instead of a select.
 
-# Demo
+### Demo
 
 ![Demo](http://g.recordit.co/7sG50yEf7O.gif)
 
-# How to use
+### Install
+
+Run this command in your nova project:
+`composer require 64robots/nova-date-filter`
+
+### How to use
 
 Just use DateFilter class instead of Filter
 
@@ -19,7 +24,7 @@ class DateFrom extends DateFilter
 }
 ```
 
-# Customization
+### Customization
 
 As Date Filter is not a select anymore we can use options method to pass the date picker config
 
