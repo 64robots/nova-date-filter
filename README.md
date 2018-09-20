@@ -2,7 +2,8 @@
 
 Nova filter that displays a Date Picker instead of a select.
 
-#Demo
+# Demo
+
 ![Demo](http://g.recordit.co/7sG50yEf7O.gif)
 
 # How to use
