@@ -12,7 +12,9 @@
       </h3>
       <DatePicker
         v-if="filter.isDateFilter"
-        :value="filter.currentValue"
+        v-model="filter.currentValue"
+        :options="filter.options"
+        @input="filterChanged(filter)"
       />
       <select
         v-else
