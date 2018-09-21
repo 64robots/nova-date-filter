@@ -62,8 +62,11 @@ export default {
         onChange: this.onChange,
         dateFormat: this.dateFormat,
         allowInput: true,
+        static: true,
         time_24hr: !this.twelveHourTime
       });
+      const wrapper = document.querySelector('.dropdown-menu div');
+      wrapper.classList.remove('overflow-hidden');
     });
   },
 
