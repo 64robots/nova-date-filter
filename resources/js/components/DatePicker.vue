@@ -11,7 +11,7 @@
 </template>
 <script>
 import flatpickr from 'flatpickr';
-import 'flatpickr/dist/themes/airbnb.css';
+import '../../airbnb-modified.css';
 
 export default {
   props: {
