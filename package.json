@@ -13,9 +13,7 @@
         "cross-env": "^5.0.0",
         "flatpickr": "^4.5.2",
         "laravel-mix": "^1.0",
-        "laravel-nova": "^1.0"
-    },
-    "dependencies": {
+        "laravel-nova": "^1.0",
         "vue": "^2.5.0"
     }
 }
