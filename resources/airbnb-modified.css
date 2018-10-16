@@ -121,10 +121,7 @@
     outline: 0;
 }
 .flatpickr-wrapper {
-    position: relative;
     display: block;
-    padding: .75rem .75rem 0 .75rem;
-    margin-bottom: -.75rem;
 }
 .flatpickr-months {
     display: -webkit-box;
