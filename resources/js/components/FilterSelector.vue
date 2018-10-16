@@ -9,7 +9,7 @@
                      :is="filter.component"
                      :filter="filter"
                      v-model="filter.currentValue"
-                     @change="filterChanged(filter)"
+                     @input="filterChanged(filter)"
                 ></div>
                 <select v-else
                         :dusk="filter.name + '-filter-select'"
