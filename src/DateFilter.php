@@ -2,20 +2,15 @@
 
 namespace R64\Filters;
 
-use Laravel\Nova\Filters\Filter;
-
-abstract class DateFilter extends Filter
+abstract class DateFilter extends CustomFilter
 {
     /**
-     * Prepare the filter for JSON serialization.
+     * The name of the Vue component to be used for this filter
      *
-     * @return array
+     * @return string
      */
-    public function jsonSerialize()
+    protected function componentName()
     {
-        return array_merge(parent::jsonSerialize(), [
-            'customComponent' => true,
-            'component'       => 'date-picker',
-        ]);
+        return 'date-picker';
     }
 }
