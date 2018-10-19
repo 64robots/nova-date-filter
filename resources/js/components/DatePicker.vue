@@ -19,7 +19,7 @@ export default {
       type: String,
       default: ''
     },
-    options: {
+    filter: {
       type: Object,
       default: () => ({})
     }
@@ -72,7 +72,7 @@ export default {
 
   methods: {
     getOption(name) {
-      const option = this.options.find(o => o.name === name);
+      const option = this.filter.options.find(o => o.name === name);
       if (!option) return false;
       return option.value;
     },

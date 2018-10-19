@@ -16,7 +16,7 @@ class FieldServiceProvider extends ServiceProvider
     public function boot()
     {
         Nova::serving(function (ServingNova $event) {
-            Nova::script('nova-date-filter', __DIR__.'/../dist/js/date-filter.js');
+            Nova::script('nova-custom-filters', __DIR__.'/../dist/js/custom-filters.js');
         });
     }
 

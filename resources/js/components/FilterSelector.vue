@@ -4,75 +4,71 @@
       v-for="filter in filters"
       :key="filter.name"
     >
-      <h3
-        slot="default"
-        class="text-sm uppercase tracking-wide text-80 bg-30 p-3"
-      >
+      <h3 slot="default" class="text-sm uppercase tracking-wide text-80 bg-30 p-3">
         {{ filter.name }}
       </h3>
-      <DatePicker
-        v-if="filter.isDateFilter"
-        v-model="filter.currentValue"
-        :options="filter.options"
-        @input="filterChanged(filter)"
-      />
-      <select
-        v-else
-        slot="select"
-        :dusk="filter.name + '-filter-select'"
-        class="block w-full form-control-sm form-select"
-        v-model="filter.currentValue"
-        @change="filterChanged(filter)"
-      >
-        <option
-          value=""
-          selected
-        >&mdash;</option>
-
-        <option
-          v-for="option in filter.options"
-          :key="option.value"
-          :value="option.value"
+      <template slot="select">
+        <div
+          v-if="filter.customComponent"
+          :is="filter.component"
+          :filter="filter"
+          v-model="filter.currentValue"
+          @input="filterChanged(filter)"
+        ></div>
+        <select
+          v-else
+          :dusk="filter.name + '-filter-select'"
+          class="block w-full form-control-sm form-select"
+          v-model="filter.currentValue"
+          @change="filterChanged(filter)"
         >
-          {{ option.name }}
-        </option>
-      </select>
+          <option
+            value=""
+            selected
+          >&mdash;
+          </option>
+
+          <option
+            v-for="option in filter.options"
+            :key="option.value"
+            :value="option.value"
+          >
+            {{ option.name }}
+          </option>
+        </select>
+      </template>
     </filter-select>
   </div>
 </template>
 
 <script>
-import DatePicker from './DatePicker';
+  export default {
+    props: ['filters', 'currentFilters'],
 
-export default {
-  components: { DatePicker },
-
-  props: ['filters', 'currentFilters'],
-
-  /**
-   * Mount the component.
-   */
-  mounted() {
-    this.current = this.currentFilters;
-  },
-
-  methods: {
     /**
-     * Handle a filter selection change.
+     * Mount the component.
      */
-    filterChanged(filter) {
-      this.current = _.reject(this.current, f => f.class == filter.class);
+    mounted() {
+      this.current = this.currentFilters;
+    },
 
-      if (filter.currentValue !== '') {
-        this.current.push({
-          class: filter.class,
-          value: filter.currentValue
-        });
+    methods: {
+      /**
+       * Handle a filter selection change.
+       */
+      filterChanged(filter) {
+        this.current = _.reject(this.current, f => f.class == filter.class);
+
+        if (filter.currentValue !== '') {
+          this.current.push({
+            class: filter.class,
+            value: filter.currentValue
+          });
+        }
+
+        this.$emit('update:currentFilters', this.current);
+        this.$emit('changed');
       }
-
-      this.$emit('update:currentFilters', this.current);
-      this.$emit('changed');
     }
-  }
-};
+  };
 </script>
