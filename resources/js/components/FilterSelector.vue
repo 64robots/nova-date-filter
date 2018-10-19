@@ -4,7 +4,10 @@
       v-for="filter in filters"
       :key="filter.name"
     >
-      <h3 slot="default" class="text-sm uppercase tracking-wide text-80 bg-30 p-3">
+      <h3
+        slot="default"
+        class="text-sm uppercase tracking-wide text-80 bg-30 p-3"
+      >
         {{ filter.name }}
       </h3>
       <template slot="select">
@@ -25,8 +28,7 @@
           <option
             value=""
             selected
-          >&mdash;
-          </option>
+          >&mdash;</option>
 
           <option
             v-for="option in filter.options"
@@ -42,33 +44,33 @@
 </template>
 
 <script>
-  export default {
-    props: ['filters', 'currentFilters'],
+export default {
+  props: ['filters', 'currentFilters'],
 
+  /**
+   * Mount the component.
+   */
+  mounted() {
+    this.current = this.currentFilters
+  },
+
+  methods: {
     /**
-     * Mount the component.
+     * Handle a filter selection change.
      */
-    mounted() {
-      this.current = this.currentFilters;
-    },
+    filterChanged(filter) {
+      this.current = _.reject(this.current, f => f.class == filter.class)
 
-    methods: {
-      /**
-       * Handle a filter selection change.
-       */
-      filterChanged(filter) {
-        this.current = _.reject(this.current, f => f.class == filter.class);
-
-        if (filter.currentValue !== '') {
-          this.current.push({
-            class: filter.class,
-            value: filter.currentValue
-          });
-        }
-
-        this.$emit('update:currentFilters', this.current);
-        this.$emit('changed');
+      if (filter.currentValue !== '') {
+        this.current.push({
+          class: filter.class,
+          value: filter.currentValue
+        })
       }
+
+      this.$emit('update:currentFilters', this.current)
+      this.$emit('changed')
     }
-  };
+  }
+}
 </script>
