@@ -40,7 +40,6 @@ export default {
    */
   mounted() {
     this.current = this.currentFilters
-    console.log('ola')
   },
 
   methods: {
