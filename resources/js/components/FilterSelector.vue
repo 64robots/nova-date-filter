@@ -17,27 +17,15 @@
           :filter="filter"
           v-model="filter.currentValue"
           @input="filterChanged(filter)"
-        ></div>
-        <select
+        >
+        </div>
+        <select-filter
           v-else
-          :dusk="filter.name + '-filter-select'"
-          class="block w-full form-control-sm form-select"
+          slot="select"
+          :filter="filter"
           v-model="filter.currentValue"
           @change="filterChanged(filter)"
-        >
-          <option
-            value=""
-            selected
-          >&mdash;</option>
-
-          <option
-            v-for="option in filter.options"
-            :key="option.value"
-            :value="option.value"
-          >
-            {{ option.name }}
-          </option>
-        </select>
+        />
       </template>
     </filter-select>
   </div>
@@ -52,6 +40,7 @@ export default {
    */
   mounted() {
     this.current = this.currentFilters
+    console.log('ola')
   },
 
   methods: {
@@ -59,17 +48,20 @@ export default {
      * Handle a filter selection change.
      */
     filterChanged(filter) {
-      this.current = _.reject(this.current, f => f.class == filter.class)
+      let newCurrent = _.reject(
+        this.currentFilters,
+        f => f.class == filter.class
+      )
 
       if (filter.currentValue !== '') {
-        this.current.push({
+        newCurrent.push({
           class: filter.class,
           value: filter.currentValue
         })
       }
 
-      this.$emit('update:currentFilters', this.current)
-      this.$emit('changed')
+      this.$emit('update:currentFilters', newCurrent)
+      this.$emit('changed', newCurrent)
     }
   }
 }
