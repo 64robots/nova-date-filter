@@ -10,8 +10,8 @@
   >
 </template>
 <script>
-import flatpickr from 'flatpickr';
-import '../../airbnb-modified.css';
+import flatpickr from 'flatpickr'
+import '../../airbnb-modified.css'
 
 export default {
   props: {
@@ -29,27 +29,27 @@ export default {
 
   computed: {
     placeholder() {
-      return this.getOption('placeholder') || this.__('Pick a date');
+      return this.getOption('placeholder') || this.__('Pick a date')
     },
 
     disabled() {
-      return this.getOption('disabled');
+      return this.getOption('disabled')
     },
 
     dateFormat() {
-      return this.getOption('dateFormat') || 'Y-m-d H:i:S';
+      return this.getOption('dateFormat') || 'Y-m-d H:i:S'
     },
 
     twelveHourTime() {
-      return this.getOption('twelveHourTime');
+      return this.getOption('twelveHourTime')
     },
 
     enableTime() {
-      return this.getOption('enableTime');
+      return this.getOption('enableTime')
     },
 
     enableSeconds() {
-      return this.getOption('enableSeconds');
+      return this.getOption('enableSeconds')
     }
   },
 
@@ -65,28 +65,28 @@ export default {
         static: true,
         time_24hr: !this.twelveHourTime,
         onReady: function(_, __, fp) {
-            fp.calendarContainer.classList.add("date-filter");
-            const calendarWrapper = document.querySelector(".flatpickr-wrapper");
-            calendarWrapper.classList.add("date-filter");
-        },
-      });
-      const wrapper = document.querySelector('.dropdown-menu div');
-      wrapper.classList.remove('overflow-hidden');
-    });
+          fp.calendarContainer.classList.add('date-filter')
+          const calendarWrapper = document.querySelector('.flatpickr-wrapper')
+          calendarWrapper.classList.add('date-filter')
+        }
+      })
+      const wrapper = document.querySelector('.dropdown-menu div')
+      wrapper.classList.remove('overflow-hidden')
+    })
   },
 
   methods: {
     getOption(name) {
-      const option = this.filter.options.find(o => o.name === name);
-      if (!option) return false;
-      return option.value;
+      const option = this.filter.options.find(o => o.name === name)
+      if (!option) return false
+      return option.value
     },
 
     onChange(event) {
-      this.$emit('input', this.$refs.datePicker.value);
+      this.$emit('input', this.$refs.datePicker.value)
     }
   }
-};
+}
 </script>
 <style scoped>
 .\!cursor-not-allowed {
