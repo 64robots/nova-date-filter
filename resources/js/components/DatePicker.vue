@@ -54,6 +54,7 @@ export default {
   },
 
   mounted() {
+    const self = this
     this.$nextTick(() => {
       this.flatpickr = flatpickr(this.$refs.datePicker, {
         enableTime: this.enableTime,
@@ -64,10 +65,8 @@ export default {
         allowInput: true,
         static: true,
         time_24hr: !this.twelveHourTime,
-        onReady: function(_, __, fp) {
-          fp.calendarContainer.classList.add('date-filter')
-          const calendarWrapper = document.querySelector('.flatpickr-wrapper')
-          calendarWrapper.classList.add('date-filter')
+        onReady() {
+          self.$refs.datePicker.parentNode.classList.add('date-filter')
         }
       })
       const wrapper = document.querySelector('.dropdown-menu div')
