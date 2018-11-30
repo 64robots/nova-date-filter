@@ -1,4 +1,8 @@
-# Date Filter for Laravel Nova
+# DEPRECATED
+
+Since Nova 1.1.8 this feature has been adopted to the core. You should upgrade Nova and use that filter instead.
+
+## Date Filter for Laravel Nova
 
 Nova filter that displays a Date Picker instead of a select.
 
